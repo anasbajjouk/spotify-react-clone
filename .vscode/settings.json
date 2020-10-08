@@ -10,5 +10,12 @@
   "editor.formatOnSave": true,
   "editor.formatOnPaste": true,
   "editor.fontWeight": 200,
-  "editor.lineHeight": 32
+  "editor.lineHeight": 32,
+  "emmet.includeLanguages": {
+    // "javascript": "html",
+    "javascript": "javascriptreact"
+  },
+  "emmet.preferences": {
+  
+  }
 }

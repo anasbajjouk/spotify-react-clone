@@ -1,46 +1,46 @@
 const customaryStyles = {
   font: {
-    regular: 400,
-    medium: 500,
-    semibold: 600,
-    bold: 700,
+    regular: 300,
+    medium: 600,
+    bold: 800,
   },
   typography: {
     h1: '4.8rem',
     h2: '4rem',
-    headline: '2.4rem',
-    default: '1.8rem',
-    paragraph: '1.6rem',
-    medium: '1.4rem',
-    small: '1.2rem',
+    homePage: '1.4rem',
+    detailPage: '1.6rem',
   },
   breakpoints: {
-    mobileS: "320px",
-    mobileM: "375px",
-    mobileL: "425px",
-    tablet: "768px",
-    laptop: "1024px",
-    laptopL: "1440px",
-    desktop: "2560px"
+    mobileS: '320px',
+    mobileM: '375px',
+    mobileL: '425px',
+    tablet: '768px',
+    laptop: '1024px',
+    laptopL: '1440px',
+    desktop: '2560px',
   },
 }
 
 const defaultColors = {
-  colors: {
-    default: '#061A40',
-    nav: '#97999B',
-    white: '#fff',
-    blue: '#338AF3',
-    headline: '#000000',
-    border: '#F1F1F2',
-    placeholder: '#76787B',
-    bg: '#F9F9FA',
-    delete: '#FBEBE9',
-    favourite: '#FEFBED'
+  black: 'rgb(25, 20, 20)',
+  green: 'rgb(30,215,96)',
+  lightTheme: {
+    input: 'hsl(0, 0%, 52%)',
+    text: 'hsl(200, 15%, 8%)',
+    background: 'hsl(0, 0%, 98%)',
+    elements: 'hsl(0, 0%, 100%)',
+    shadow: '#969B9F',
+    black: 'rgb(25, 20, 20)',
+  },
+  darkTheme: {
+    text: 'hsl(0, 0%, 100%)',
+    background: 'hsl(207, 26%, 17%)',
+    elements: 'hsl(209, 23%, 22%)',
+    shadow: '#000612',
+    black: 'rgb(25, 20, 20)',
   },
 }
 
 const theme = { ...defaultColors, ...customaryStyles }
 
 export default theme
-

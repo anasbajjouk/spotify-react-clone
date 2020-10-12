@@ -9,11 +9,17 @@ export const LoginContainer = styled.div`
   flex-direction: column;
 
   & > a {
-    margin-top: 50px;
+    margin-top: 200px;
     background-color: ${({ theme }) => theme.green};
     padding: 15px 50px 15px 50px;
     border-radius: 50px;
     color: ${({ theme }) => theme.black};
+
+    @media screen and (max-width: ${({ theme }) => theme.breakpoints.laptopL}) {
+      margin-top: 100px;
+      padding: 10px 70px;
+      border-radius: 50px;
+    }
   }
 
   & > a:hover {
@@ -23,7 +29,7 @@ export const LoginContainer = styled.div`
 `
 
 export const LogoImg = styled.img`
-  @media screen and (max-width: 768px) {
-    width: 40%;
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.laptopL}) {
+    width: 80%;
   }
 `

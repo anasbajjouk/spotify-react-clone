@@ -7,7 +7,7 @@ const customaryStyles = {
   typography: {
     h1: '4.8rem',
     h2: '4rem',
-    homePage: '1.4rem',
+    regular: '1.2rem',
     detailPage: '1.6rem',
   },
   breakpoints: {
@@ -22,22 +22,25 @@ const customaryStyles = {
 }
 
 const defaultColors = {
-  black: 'rgb(25, 20, 20)',
+  black: '#040404',
   green: 'rgb(30,215,96)',
+  white: "#fff",
   lightTheme: {
     input: 'hsl(0, 0%, 52%)',
     text: 'hsl(200, 15%, 8%)',
     background: 'hsl(0, 0%, 98%)',
     elements: 'hsl(0, 0%, 100%)',
     shadow: '#969B9F',
-    black: 'rgb(25, 20, 20)',
+    black: '#040404',
   },
   darkTheme: {
-    text: 'hsl(0, 0%, 100%)',
+    text: '#FFFFFF',
     background: 'hsl(207, 26%, 17%)',
     elements: 'hsl(209, 23%, 22%)',
     shadow: '#000612',
-    black: 'rgb(25, 20, 20)',
+    black: '#040404',
+    grey: '#9a9a9a',
+    
   },
 }
 

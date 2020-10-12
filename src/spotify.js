@@ -10,10 +10,30 @@ export const scopes = [
   'user-read-playback-state',
   'user-top-read',
   'user-modify-playback-state',
+  'user-read-playback-position',
+  'user-library-modify',
+  'user-library-read',
   'playlist-read-private',
+  'playlist-modify-private',
+  'playlist-modify-public',
+  'playlist-read-collaborative',
+  'ugc-image-upload',
+  'app-remote-control',
   'streaming',
 ]
 
-export const loginUrl = `${authEndpoint}?client_id=${clientID}&response_type=code&redirect_uri=${redirectURI}&scope=${scopes.join(
+export const getTokenFromUrl = () => {
+  return window.location.hash
+    .substring(1)
+    .split('&')
+    .reduce((initial, item) => {
+      let parts = item.split('=')
+      initial[parts[0]] = parts[1]
+
+      return initial
+    }, {})
+}
+
+export const loginUrl = `${authEndpoint}?client_id=${clientID}&response_type=token&redirect_uri=${redirectURI}&scope=${scopes.join(
   '%20'
-)}&state=34fFs29kd09`
+)}&state=34fFs29kd09&show_dialog=false`

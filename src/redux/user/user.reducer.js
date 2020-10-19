@@ -1,23 +1,31 @@
 import { UserActionTypes } from './user.types'
 
 const INITIAL_STATE = {
+  spotify: null,
   currentUser: null,
-  token:
-    'BQAhdI0IDv_Qd0Uqjk9vTOb-VFHSCQCutWY0Z0HUk45L5JcNN505VWIHgZnIUVBoDds71Z_KUBvWuvzOmkDm0V1yf3IQh0aHv0CCLmAzdOfi-el5rElVwQf5BbRR1AWAU_cInZTjny0cbTGgmxOkTmfpHubK4QqXvv0LBBbAWJLrkYidD885aVrFnrOHXfps7JOBzBbfKaiS9C9mSJFfX41DqWT78uZHRrX723pbJz0EOfoEnQsp8O7wpF9k5_acQdoZeuIpKv1MzgZ1wG0QfbN1CmpzAGxk',
+  token:null
+  // token:
+  //   'BQDm8MKvD9WCXIax-gv68TG-EmmzbZm_QGdY0py8zEgDkFvv9_lE0RkK7dVyAd5pDOFQ-Atl-1DwANfjsph_lwtAewOdmBydxXyJe0R6tjyCeOJE3yVRpJ7E5U08QjqtOxMLt8upXxugqqAIhDX6SmbalNe_xUqHpQxo94wk53UQVcoJ8d5PQm-4mu5Wlqp8mk2Lt23_kzqzJUMMKkf-NgUft-RZjFA1bvmXceXgeHRuXspvfhT1KeJ94jS6_RuApIxOGregvQBWu-QxeDAuZ_gn3MxeQjvyLAEr',
 }
 
 const userReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case UserActionTypes.SET_TOKEN:
+      return {
+        ...state,
+        token: action.payload,
+      }
+
     case UserActionTypes.SET_CURRENT_USER:
       return {
         ...state,
         currentUser: action.payload,
       }
 
-    case UserActionTypes.SET_TOKEN:
+    case UserActionTypes.SET_SPOTIFY:
       return {
         ...state,
-        token: action.payload,
+        spotify: action.payload,
       }
     default:
       return state

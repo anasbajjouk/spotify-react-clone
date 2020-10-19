@@ -2,8 +2,8 @@ import React from 'react'
 
 const Body = () => {
     return (
-        <div>
-            {/* Body.jsx */}
+        <div style={{color: "yellow"}}>
+            Body
         </div>
     )
 }

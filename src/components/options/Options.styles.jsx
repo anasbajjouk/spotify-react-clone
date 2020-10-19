@@ -1,15 +1,25 @@
 import styled from 'styled-components'
 
 export const OptionContainer = styled.div`
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  color: ${({ theme }) => theme.darkTheme.grey};
-  height: 40px;
-  transition: 200ms background color ease-in;
-  margin-bottom: 10px;
+  &,
+  a {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: ${({ theme }) => theme.darkTheme.grey};
+    height: 40px;
+    transition: 200ms background color ease-in;
+    margin-bottom: 10px;
+    width: 100%;
+    font-size: ${({ theme }) => theme.typography.small};
 
-  &:hover {
+    &:last-child {
+      margin-bottom: 0px;
+    }
+  }
+
+  &,
+  a:hover {
     color: ${({ theme }) => theme.white};
   }
 
@@ -17,8 +27,12 @@ export const OptionContainer = styled.div`
     background: ${({ theme }) => theme.white};
   }
 
-  &:active {
-    color: ${({ theme }) => theme.white};
+  & .selected {
+    border-radius: 7px;
+    background-color: #282828;
+    color: white;
+    padding-left: 20px;
+    width: 90%;
   }
 
   & .square {
@@ -29,12 +43,16 @@ export const OptionContainer = styled.div`
     font-size: 0.3rem;
   }
 
-  & > .option_icon {
+  & .option_icon {
     margin-right: 10px;
+
+    & + h4 {
+      color: inherit;
+    }
   }
 
-  & > p {
+  & p {
     font-weight: 400;
-    font-size: ${({ theme }) => theme.typography.regular};
+    font-size: inherit;
   }
 `

@@ -1,15 +1,21 @@
 import React from 'react'
-import Body from '../../components/body/Body'
+import { Route } from 'react-router-dom'
+// import Body from '../../components/body/Body'
 import Footer from '../../components/footer/Footer'
 import Sidebar from '../../components/sidebar/Sidebar'
 import { PlayerContainer } from './Player.styles'
 
-const Player = () => {
+const Player = ({ spotifyApi }) => {
   return (
     <PlayerContainer>
       <Sidebar />
-      <Body />
-      <Footer />
+      <Footer spotifyApi={spotifyApi} />
+      <Route exact path="/search">
+        <h4>Search</h4>
+      </Route>
+      <Route exact path="/collection/playlists">
+        <h4>Library</h4>
+      </Route>
     </PlayerContainer>
   )
 }

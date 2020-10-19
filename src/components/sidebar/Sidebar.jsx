@@ -6,8 +6,8 @@ import HomeIcon from '@material-ui/icons/Home'
 import SearchIcon from '@material-ui/icons/Search'
 import LibraryBooksIcon from '@material-ui/icons/LibraryBooks'
 import AddIcon from '@material-ui/icons/Add'
-import { Link, NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { truncate } from '../../common/utils'
 
 const Sidebar = ({ playlists }) => {
   const { myPlaylists } = playlists
@@ -15,29 +15,35 @@ const Sidebar = ({ playlists }) => {
   return (
     <SidebarContainer>
       <img src={Spotify_Logo_RGB_White} alt="Spotify_Logo" />
-      <NavLink to="/home" exact activeClassName="selected">
-        <Options title="Home" Icon={HomeIcon} />
-      </NavLink>
 
-      <NavLink to="/search" exact>
-        <Options title="Search" Icon={SearchIcon} />
-      </NavLink>
+      <Options title="Home" Icon={HomeIcon} toPath="/home" />
 
-      <NavLink to="/collection/playlists" exact>
-        <Options title="Your Library" Icon={LibraryBooksIcon} />
-      </NavLink>
+      <Options title="Search" Icon={SearchIcon} toPath="/search" />
+
+      <Options
+        title="Your Library"
+        Icon={LibraryBooksIcon}
+        toPath="/collection/playlists"
+      />
 
       <div className="playlists">PLAYLISTS</div>
-      <Options title="Your Library" Icon={AddIcon} square={true} />
+      <Options title="Create Playlist" Icon={AddIcon} square={true} />
 
       <hr />
-      {myPlaylists?.map((playlist, i) => {
-        return (
-          <Link to={`/playlist/${playlist.id}`}>
-            <Options title={playlist.name} key={i + 150} />
-          </Link>
-        )
-      })}
+
+      <div className="all_playlists">
+
+        {myPlaylists?.map((playlist, i) => {
+          return (
+            <Options
+              title={truncate(playlist.name, 18)}
+              // title={(playlist.name)}
+              key={i + 150}
+              toPath={`/playlist/${playlist.id}`}
+            />
+          )
+        })}
+      </div>
     </SidebarContainer>
   )
 }

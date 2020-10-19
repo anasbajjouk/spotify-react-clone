@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
 import { persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
+import playbackReducer from './playback/playback.reducer'
 import playlistsReducer from './playlists/playlists.reducer'
 
 import userReducer from './user/user.reducer'
@@ -13,7 +14,8 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   user: userReducer,
-  playlists: playlistsReducer
+  playlists: playlistsReducer,
+  playback: playbackReducer,
 })
 
 export default persistReducer(persistConfig, rootReducer)

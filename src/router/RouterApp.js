@@ -1,24 +1,25 @@
 import React from 'react'
+import { Provider } from 'react-redux'
+import { store } from '../redux/store'
+import { BrowserRouter, Switch } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
-import { Route, Router, Switch } from 'react-router-dom'
-import history from '../common/history'
+// import history from '../common/history'
 
 //Themes
 import theme from '../common/theme'
 import { GlobalStyles } from '../common/globalStyle'
+
 import Initialize from '../components/initialize/Initialize'
-import { Provider } from 'react-redux'
-import { store } from '../redux/store'
 
 const RouterApp = () => (
   <ThemeProvider theme={theme}>
     <Provider store={store}>
-      <Router history={history}>
+      <BrowserRouter >
         <GlobalStyles />
         <Switch>
           <Initialize />
         </Switch>
-      </Router>
+      </BrowserRouter>
     </Provider>
   </ThemeProvider>
 )

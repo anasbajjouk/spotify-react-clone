@@ -1,0 +1,31 @@
+import { PlaybackActionTypes } from './playback.types'
+
+export const setPlayingTrack = (track) => ({
+  type: PlaybackActionTypes.SET_CURRENT_PLAYING_TRACK,
+  payload: track,
+})
+
+export const setCurrentPlaybackState = (track) => ({
+  type: PlaybackActionTypes.SET_CURRENT_PLAYBACK_STATE,
+  payload: track,
+})
+
+export const setPlay = (playingOrNot) => ({
+  type: PlaybackActionTypes.SET_PLAYING,
+  payload: playingOrNot,
+})
+
+export const setRepeat = (repeatingOrNot) => ({
+  type: PlaybackActionTypes.SET_REPEAT_STATE,
+  payload: repeatingOrNot,
+})
+
+export const setShuffle = (shufflingType) => ({
+  type: PlaybackActionTypes.SET_SHUFFLE_STATE,
+  payload: shufflingType,
+})
+
+export const setVolume = (volume) => ({
+  type: PlaybackActionTypes.SET_VOLUME,
+  payload: volume,
+})

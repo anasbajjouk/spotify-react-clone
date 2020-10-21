@@ -11,14 +11,14 @@ const FooterRight = ({volume, handleVolume}) => {
         <VolumeDownIcon />
         <Slider
           value={volume}
-          defaultValue={80}
+          defaultValue={100}
           aria-labelledby="discrete-slider-volume"
           valueLabelDisplay="auto"
           min={0}
           max={100}
-          marks={true}
-          onInput={handleVolume}
+          // marks={true}
           onChange={handleVolume}
+          onInput={handleVolume}
           className="slider footer__green"
         />
       </FooterRightContainer>

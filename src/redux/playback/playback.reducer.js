@@ -6,7 +6,7 @@ const INITIAL_STATE = {
   playing: false,
   repeatState: false,
   shuffleState: 'off',
-  volume: '50'
+  volumeState: 95,
 }
 
 const playbackReducer = (state = INITIAL_STATE, action) => {
@@ -22,6 +22,7 @@ const playbackReducer = (state = INITIAL_STATE, action) => {
         ...state,
         currentPlaybackState: action.payload,
       }
+
     case PlaybackActionTypes.SET_PLAYING:
       return {
         ...state,
@@ -39,11 +40,13 @@ const playbackReducer = (state = INITIAL_STATE, action) => {
         ...state,
         shuffleState: action.payload,
       }
-    case PlaybackActionTypes.SET_VOLUME:
+
+    case PlaybackActionTypes.SET_VOLUME_STATE:
       return {
         ...state,
-        volume: action.payload,
+        volumeState: action.payload,
       }
+
     default:
       return state
   }

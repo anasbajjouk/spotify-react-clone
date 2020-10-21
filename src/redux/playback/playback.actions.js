@@ -25,7 +25,7 @@ export const setShuffle = (shufflingType) => ({
   payload: shufflingType,
 })
 
-export const setVolume = (volume) => ({
-  type: PlaybackActionTypes.SET_VOLUME,
+export const setMyVolume = (volume) => ({
+  type: PlaybackActionTypes.SET_VOLUME_STATE,
   payload: volume,
 })

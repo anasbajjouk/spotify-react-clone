@@ -7,6 +7,7 @@ import {
   setPlay,
   setShuffle,
   setRepeat,
+  setMyVolume,
 } from '../../redux/playback/playback.actions'
 import FooterLeft from '../footerLeft/FooterLeft'
 import FooterCenter from '../footerCenter/FooterCenter'
@@ -14,25 +15,30 @@ import FooterRight from '../footerRight/FooterRight'
 
 const Footer = ({
   playback,
+  user,
   spotifyApi,
   setPlay,
   setShuffle,
   setRepeat,
+  setMyVolume,
   setCurrentPlaybackState,
   setPlayingTrack,
-  user,
 }) => {
-  let [value, setValue] = useState(0)
-  let [volume, setVolume] = useState(80)
-  
   const { token } = user
-  let { playing, shuffleState, repeatState } = playback
+  let { playing, shuffleState, repeatState, volumeState } = playback
 
-  let { is_playing, repeat_state, shuffle_state, item } =
-    playback?.currentPlaybackState || {}
+  let {
+    is_playing,
+    repeat_state,
+    shuffle_state,
+    item,
+    device: { volume_percent } = 95,
+  } = playback?.currentPlaybackState || {}
 
   let { name, duration_ms, album, artists } = item || {}
   let { images } = album || {}
+
+  let [value, setValue] = useState(0)
 
   const marks = [
     {
@@ -47,6 +53,7 @@ const Footer = ({
   useEffect(() => {
     spotifyApi.setAccessToken(token)
 
+    setMyVolume(volume_percent)
     setPlay(is_playing)
     setShuffle(shuffle_state)
     setRepeat(repeat_state)
@@ -65,14 +72,12 @@ const Footer = ({
         setCurrentPlaybackState(track)
       })
       .catch((err) => console.error('error', err))
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
+    volume_percent,
     is_playing,
     repeat_state,
-    setCurrentPlaybackState,
-    setPlay,
-    setPlayingTrack,
-    setRepeat,
-    setShuffle,
     shuffle_state,
     spotifyApi,
     token,
@@ -133,8 +138,8 @@ const Footer = ({
   }
 
   const handleVolume = (event, newValue) => {
-    setVolume(newValue)
-    spotifyApi.setVolume(volume)
+    setMyVolume(newValue)
+    spotifyApi.setVolume(newValue)
   }
 
   return (
@@ -159,7 +164,7 @@ const Footer = ({
         handleRepeat={handleRepeat}
         handleSlide={handleSlide}
       />
-      <FooterRight volume={volume} handleVolume={handleVolume} />
+      <FooterRight volume={volumeState} handleVolume={handleVolume} />
     </FooterContainer>
   )
 }
@@ -175,6 +180,7 @@ const mapDispatchToProps = (dispatch) => ({
   setPlay: (playingOrNot) => dispatch(setPlay(playingOrNot)),
   setRepeat: (repeatingOrNot) => dispatch(setRepeat(repeatingOrNot)),
   setShuffle: (shufflingType) => dispatch(setShuffle(shufflingType)),
+  setMyVolume: (volume) => dispatch(setMyVolume(volume)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Footer)

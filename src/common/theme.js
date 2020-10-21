@@ -25,7 +25,7 @@ const customaryStyles = {
 const defaultColors = {
   black: '#040404',
   green: 'rgb(30,215,96)',
-  white: "#fff",
+  white: '#fff',
   // green: '#1ed15e',
   lightTheme: {
     footer: '#282828',
@@ -44,7 +44,7 @@ const defaultColors = {
     shadow: '#000612',
     black: '#040404',
     grey: '#9a9a9a',
-    
+    header: '#121212',
   },
 }
 

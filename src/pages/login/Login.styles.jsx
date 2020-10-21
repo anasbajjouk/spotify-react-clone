@@ -9,11 +9,13 @@ export const LoginContainer = styled.div`
   flex-direction: column;
 
   & > a {
-    margin-top: 200px;
+    margin-top: 120px;
     background-color: ${({ theme }) => theme.green};
     padding: 15px 50px 15px 50px;
     border-radius: 50px;
     color: ${({ theme }) => theme.black};
+    font-weight: 600;
+    font-size:17px;
 
     @media screen and (max-width: ${({ theme }) => theme.breakpoints.laptopL}) {
       margin-top: 100px;

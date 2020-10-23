@@ -29,3 +29,8 @@ export const setMyVolume = (volume) => ({
   type: PlaybackActionTypes.SET_VOLUME_STATE,
   payload: volume,
 })
+
+export const setRecentlyPlayed = (recentlyPlayed, limit) => ({
+  type: PlaybackActionTypes.SET_RECENTLY_PLAYED,
+  payload: {recentlyPlayed, limit},
+})

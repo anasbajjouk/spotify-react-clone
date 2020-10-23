@@ -8,12 +8,11 @@ import { BlackCircle } from '../Elements'
 import Dropdown from '../dropdown/Dropdown'
 import { HeaderContainer } from './Header.styles'
 
-const Header = ({ navbar, dropdownData }) => {
+const Header = ({ navbar, dropdownData, image, name }) => {
   const [showMenu, setShowMenu] = useState(false)
-
   return (
     <>
-      <HeaderContainer active={navbar}>
+      <HeaderContainer active={navbar} id="header">
         <div className="header__left">
           <BlackCircle>
             <NavigateBeforeIcon />
@@ -28,12 +27,10 @@ const Header = ({ navbar, dropdownData }) => {
           <BlackCircle justifyMyContent={'space-between'}>
             <Avatar
               style={{ height: '30px', width: '30px' }}
-              alt={'lol'}
-              src={
-                'https://www.befunky.com/images/wp/wp-2014-08-milky-way-1023340_1280.jpg?auto=webp&format=jpg&width=1184'
-              }
+              alt={name}
+              src={image?.url}
             />
-            <h4>Anas Bajjouk</h4>
+            <h4>{name}</h4>
             {showMenu ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
           </BlackCircle>
           {showMenu && <Dropdown data={dropdownData} />}

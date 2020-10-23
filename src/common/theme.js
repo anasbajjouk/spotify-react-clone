@@ -9,6 +9,7 @@ const customaryStyles = {
     h2: '4rem',
     small: '.9rem',
     regular: '1.2rem',
+    medium: '1.4rem',
     detailPage: '1.6rem',
   },
   breakpoints: {

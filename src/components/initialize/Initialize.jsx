@@ -67,7 +67,7 @@ const Initialize = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setCurrentUser, setPlaylists, setToken, token])
 
-  return <>{token ? <Player spotifyApi={spotifyApi} /> : <Login />}</>
+  return <>{token ? <Player spotifyApi={spotifyApi} token={token}/> : <Login />}</>
 }
 
 const mapStateToProps = (state) => ({

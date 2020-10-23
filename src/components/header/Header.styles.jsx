@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const HeaderContainer = styled.div`
+  z-index: 3;
   height: 10vh;
   width: 100%;
   display: flex;
@@ -8,6 +9,7 @@ export const HeaderContainer = styled.div`
   align-items: center;
   position: sticky;
   top: 0;
+  padding: 0 20px;
   background-color: ${({ theme, active }) =>
     active ? theme.darkTheme.header : 'transparent'};
   color: white;
@@ -26,5 +28,6 @@ export const HeaderContainer = styled.div`
     position: relative;
     display: inline-block;
     cursor: pointer;
+    min-width: 100px;
   }
 `

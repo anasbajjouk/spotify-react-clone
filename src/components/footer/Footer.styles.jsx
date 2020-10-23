@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const FooterContainer = styled.div`
+  z-index: 2;
   position: fixed;
   bottom: 0;
   height: 13vh;

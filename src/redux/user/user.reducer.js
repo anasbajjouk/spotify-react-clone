@@ -3,8 +3,8 @@ import { UserActionTypes } from './user.types'
 const INITIAL_STATE = {
   spotify: null,
   currentUser: null,
-  token: null
-    // 'BQAOeCBQnwzK6OCv3q35RyJ24bE5SNgLdVK5tCUAOM0usnEuCzn1iQTLParx8V2IQY7quZsmGz8rTBHrxIBj-0qgS3WTtNQHa4ZUqQ3ztrzBEg-BuhyUkj8ncM42vdUZPxd8e2_6nbeXgQjb2rHveKzCLuoK5p4fWCcGam8EnIvXmtS8gkH6264frn-KxbMX_m0s3QDepgpPbi8viGrn4O8WVwayOQG6hx2GHain6DlEK_kfhBUCPQDxm0SY1uX6g-Wfy0ZI81NrGBaiKVvcNm7UKYojOF9N_YE0',
+  token:
+    'BQBiPd-76doqIyTBI3rjrBUZ_mgTAKJBEMDdTFwiODbONGXNwXFROhNcu91EmLQdpskTK7txy6tRb5rBjPU-fh4mKMbGFLwb6gPqKDkIKNj6roYg5xJc4ulHeR20sSCCKakEiLMTZe5hzMlZ-efzTVWqAe2lEbLIUdvZKo6jW07iwPcpb4WA8htSuipxneKxoYyh5T7BG_V91u-aAImsrpAQj4igOdt4mfFzebRR-MePFjrNCPEAFrp9JDpzJhy44nj2J9zJ1ClLe-jInRofQsIrYbFBWhmkaa2M',
 }
 
 const userReducer = (state = INITIAL_STATE, action) => {

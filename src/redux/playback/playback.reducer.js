@@ -3,6 +3,7 @@ import { PlaybackActionTypes } from './playback.types'
 const INITIAL_STATE = {
   currentPlayingTrack: {},
   currentPlaybackState: {},
+  recentPlayedTracks: {},
   playing: false,
   repeatState: false,
   shuffleState: 'off',
@@ -45,6 +46,12 @@ const playbackReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         volumeState: action.payload,
+      }
+
+    case PlaybackActionTypes.SET_RECENTLY_PLAYED:
+      return {
+        ...state,
+        recentPlayedTracks: action.payload,
       }
 
     default:

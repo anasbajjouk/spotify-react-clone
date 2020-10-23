@@ -4,7 +4,7 @@ import PlaylistPlayIcon from '@material-ui/icons/PlaylistPlay'
 import Slider from '@material-ui/core/Slider'
 import { FooterRightContainer } from './FooterRight.styles'
 
-const FooterRight = ({volume, handleVolume}) => {
+const FooterRight = ({volume=100, handleVolume}) => {
     return (
       <FooterRightContainer>
         <PlaylistPlayIcon />
@@ -16,9 +16,7 @@ const FooterRight = ({volume, handleVolume}) => {
           valueLabelDisplay="auto"
           min={0}
           max={100}
-          // marks={true}
           onChange={handleVolume}
-          onInput={handleVolume}
           className="slider footer__green"
         />
       </FooterRightContainer>

@@ -4,7 +4,6 @@ import { CardContainer } from './Card.styles'
 const Card = ({ tracksPlayed }) => {
   const { name, album, artists } = tracksPlayed
 
-  console.log(album.images[1])
   return (
     <CardContainer>
       <img src={album.images[1].url} alt="" />

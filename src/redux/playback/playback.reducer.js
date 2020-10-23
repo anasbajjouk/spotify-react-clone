@@ -54,6 +54,12 @@ const playbackReducer = (state = INITIAL_STATE, action) => {
         recentPlayedTracks: action.payload,
       }
 
+    case PlaybackActionTypes.SET_LIMIT:
+      return {
+        ...state,
+        recentPlayedTracks: action.payload,
+      }
+
     default:
       return state
   }

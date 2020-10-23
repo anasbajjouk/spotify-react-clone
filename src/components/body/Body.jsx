@@ -11,6 +11,7 @@ import { setRecentlyPlayed } from '../../redux/playback/playback.actions'
 
 const Body = ({ spotifyApi, user, playback, setRecentlyPlayed }) => {
   const [navbar, setNavbar] = useState(false)
+  const [myLimit, setLimit] = useState(20)
   const myRef = useRef()
   const { token, currentUser } = user || {}
   const {
@@ -27,18 +28,26 @@ const Body = ({ spotifyApi, user, playback, setRecentlyPlayed }) => {
     }
   }
 
+  const handleClick = () => {
+    if (limit === 20) {
+      setLimit(50)
+    } else {
+      setLimit(20)
+    }
+  }
+
   useEffect(() => {
     spotifyApi.setAccessToken(token)
 
     // Get Current User's Recently Played Tracks
     spotifyApi
       .getMyRecentlyPlayedTracks({
-        limit: 20,
+        limit: myLimit,
       })
       .then((data) => setRecentlyPlayed(data.items, data.limit))
       .catch((err) => console.error('error', err))
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [myLimit])
 
   return (
     <>
@@ -49,17 +58,17 @@ const Body = ({ spotifyApi, user, playback, setRecentlyPlayed }) => {
           image={currentUser?.images[0]}
           name={currentUser?.display_name}
         />
-        <BodyTitle title={'Recently played'} seeAll={true} />
+        <BodyTitle
+          title={'Recently played'}
+          seeAll={true}
+          limit={limit}
+          handleClick={handleClick}
+        />
 
         <CardsHolder>
           {recentlyPlayed &&
             recentlyPlayed.map((tracksPlayed, i) => {
-              return (
-                <Card
-                  key={i}
-                  tracksPlayed={tracksPlayed.track}
-                />
-              )
+              return <Card key={i} tracksPlayed={tracksPlayed.track} />
             })}
         </CardsHolder>
 

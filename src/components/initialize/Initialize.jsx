@@ -39,35 +39,27 @@ const Initialize = ({
     if (token) {
       spotifyApi.setAccessToken(token)
 
-      const getUserInfoAndPlaylists = () => {
-        spotifyApi
-          .getMe()
-          .then((user) => {
-            setCurrentUser(user)
-          })
-          .catch((err) => console.error(err))
+      spotifyApi
+        .getMe()
+        .then((user) => {
+          setCurrentUser(user)
+        })
+        .catch((err) => console.error(err))
 
-        spotifyApi
-          .getUserPlaylists()
-          .then((playlists) => {
-            setPlaylists(playlists?.items)
-          })
-          .catch((err) => console.error('error', err))
-      }
-
-      getUserInfoAndPlaylists()
-
-      // const time = setInterval(() => {
-      //   getUserInfoAndPlaylists()
-      // }, 2000)
-
-      // return () => clearInterval(time)
+      spotifyApi
+        .getUserPlaylists()
+        .then((playlists) => {
+          setPlaylists(playlists?.items)
+        })
+        .catch((err) => console.error('error', err))
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setCurrentUser, setPlaylists, setToken, token])
 
-  return <>{token ? <Player spotifyApi={spotifyApi} token={token}/> : <Login />}</>
+  return (
+    <>{token ? <Player spotifyApi={spotifyApi} token={token} /> : <Login />}</>
+  )
 }
 
 const mapStateToProps = (state) => ({

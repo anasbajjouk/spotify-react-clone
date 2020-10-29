@@ -41,9 +41,10 @@ export const SidebarContainer = styled.div`
 
   & > img {
     object-fit: contain;
-    padding: 12px;
+    padding: 0px;
     margin: 20px 0;
-    height: 80px;
+    height: 45px;
+    margin-left: -70px;
   }
 
   & > .playlists {

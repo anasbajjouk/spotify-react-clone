@@ -20,7 +20,10 @@ const PlaylistHeader = ({ type, name, images, owner, tracks }) => {
         <small>{type?.toUpperCase()}</small>
         <H1>{name}</H1>
         <p>
-          {owner} <strong>&bull; {tracks?.total} songs</strong>
+          {owner}
+          <strong>
+            &bull; {tracks?.total} {tracks?.total > 1 ? 'songs' : 'song'}
+          </strong>
         </p>
       </div>
     </PlaylistHeaderContainer>

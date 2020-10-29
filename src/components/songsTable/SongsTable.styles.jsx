@@ -4,9 +4,15 @@ export const SongTableContainer = styled.div`
   padding: 20px 20px;
   background: linear-gradient(180deg, #272727 0%, #121212 100%);
   color: ${({ theme }) => theme.darkTheme.elements};
+
   & .playlist_icon {
+    cursor: pointer;
     font-size: 4rem;
     color: ${({ theme }) => theme.green};
+
+    &:hover {
+      transform: scale(1.07);
+    }
   }
 `
 
@@ -19,7 +25,6 @@ export const EmptyHere = styled.div`
   color: white;
   font-size: 1.5rem;
   padding: 30px;
-
 
   & > .icon {
     font-size: 6rem;

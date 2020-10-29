@@ -9,7 +9,7 @@ import AddIcon from '@material-ui/icons/Add'
 import { connect } from 'react-redux'
 import { truncate } from '../../common/utils'
 
-const Sidebar = ({ playlists }) => {
+const Sidebar = ({ playlists, showModal }) => {
   const { myPlaylists } = playlists
 
   return (
@@ -27,17 +27,20 @@ const Sidebar = ({ playlists }) => {
       />
 
       <div className="playlists">PLAYLISTS</div>
-      <Options title="Create Playlist" Icon={AddIcon} square={true} />
+      <Options
+        title="Create Playlist"
+        Icon={AddIcon}
+        square={true}
+        clicked={showModal}
+      />
 
       <hr />
 
       <div className="all_playlists">
-
         {myPlaylists?.map((playlist, i) => {
           return (
             <Options
               title={truncate(playlist.name, 18)}
-              // title={(playlist.name)}
               key={i + 150}
               toPath={`/playlist/${playlist.id}`}
             />

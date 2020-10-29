@@ -34,7 +34,7 @@ const SongsTable = ({ spotifyApi, songs, playback, setPlay }) => {
         <EmptyHere>
           <AlbumIcon className="icon" />
           <h2>It's a bit empty here...</h2>
-          <p>Let's find some songs for your playlist</p>
+          <p>Go find some songs then come back here :D</p>
         </EmptyHere>
       )}
     </SongTableContainer>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import SpotifyWebApi from 'spotify-web-api-js'
 import Login from '../../pages/login/Login'
@@ -14,19 +14,13 @@ import {
   setCurrentPlaybackState,
   setPlayingTrack,
 } from '../../redux/playback/playback.actions'
+import MyModal from '../modal/Modal'
 
-const Initialize = ({
-  setToken,
-  setCurrentUser,
-  setPlaylists,
-  setPlayingTrack,
-  setCurrentPlaybackState,
-  setSpotify,
-  user,
-}) => {
+const spotifyApi = new SpotifyWebApi()
+
+const Initialize = ({ setToken, setCurrentUser, setPlaylists, user }) => {
   const { token } = user
-  const spotifyApi = new SpotifyWebApi()
-
+  const [show, setShow] = useState(true)
   useEffect(() => {
     const hash = getTokenFromUrl()
     let _token = hash.access_token
@@ -58,7 +52,21 @@ const Initialize = ({
   }, [setCurrentUser, setPlaylists, setToken, token])
 
   return (
-    <>{token ? <Player spotifyApi={spotifyApi} token={token} /> : <Login />}</>
+    <>
+      <MyModal show={show} handleClose={() => setShow(false)}>
+        <p>Modal</p>
+        <p>Data</p>
+      </MyModal>
+      {token ? (
+        <Player
+          spotifyApi={spotifyApi}
+          token={token}
+          showModal={() => setShow(true)}
+        />
+      ) : (
+        <Login />
+      )}
+    </>
   )
 }
 

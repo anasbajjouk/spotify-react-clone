@@ -4,24 +4,44 @@ export const truncate = (string, number = 20) => {
     : string
 }
 
-export const CallMyCurrentPlaybackState = (
-  spotifyApi,
-  setCurrentPlaybackState,
-  thirdone
-) => {
-  // Get Information About The User's Current Playback State
-  spotifyApi
-    .getMyCurrentPlaybackState()
-    .then((track) => {
-      setCurrentPlaybackState(track)
-      thirdone(track)
-    })
-    .catch((err) => console.error('error', err))
-}
-
 export const millisToMinutesAndSeconds = (ms) => {
   let minutes = Math.floor(ms / 60000)
-  let seconds = Math.floor(ms % 1000).toFixed(0)
+  let seconds = Math.floor((ms % 60000) / 1000).toFixed(0)
 
-  return minutes + ':' + (seconds < 10 ? '0' : '') + seconds
+  return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`
+}
+
+export const convertToLocalDate = (date) => {
+  const monthNames = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ]
+
+  const utcDate = new Date(date)
+
+  const year = utcDate.getUTCFullYear()
+  const month = monthNames[utcDate.getUTCMonth()].substring(0, 3)
+  const day = utcDate.getUTCDate()
+
+  return `${month} ${day}, ${year}`
+}
+
+export const handlePlayPause = (playing, spotifyApi, setPlay) => {
+  if (playing) {
+    spotifyApi.pause()
+    setPlay(false)
+  } else {
+    spotifyApi.play()
+    setPlay(true)
+  }
 }

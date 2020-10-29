@@ -7,7 +7,7 @@ import { FooterRightContainer } from './FooterRight.styles'
 const FooterRight = ({volume=100, handleVolume}) => {
     return (
       <FooterRightContainer>
-        <PlaylistPlayIcon />
+        {/* <PlaylistPlayIcon /> */}
         <VolumeDownIcon />
         <Slider
           value={volume}

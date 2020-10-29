@@ -3,9 +3,9 @@ import PlaylistHeader from '../../components/playlistHeader/PlaylistHeader'
 import SongsTable from '../../components/songsTable/SongsTable'
 import { PlaylistContainer } from './Playlist.styles'
 
-const Playlist = ({ type, name, images, owner, tracks }) => {
-  // console.log('tracks', tracks)
-  const {items} = tracks || {}
+const Playlist = ({ spotifyApi, type, name, images, owner, tracks }) => {
+  const { items } = tracks || {}
+
   return (
     <PlaylistContainer>
       <PlaylistHeader
@@ -16,9 +16,7 @@ const Playlist = ({ type, name, images, owner, tracks }) => {
         tracks={tracks}
       />
 
-      <div>+</div>
-
-      <SongsTable songs={items} />
+      <SongsTable spotifyApi={spotifyApi} songs={items} />
     </PlaylistContainer>
   )
 }

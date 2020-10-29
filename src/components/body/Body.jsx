@@ -118,6 +118,7 @@ const Body = ({
         </Route>
         <Route exact path="/playlist/:id">
           <Playlist
+            spotifyApi={spotifyApi}
             type={type}
             name={name}
             images={images}

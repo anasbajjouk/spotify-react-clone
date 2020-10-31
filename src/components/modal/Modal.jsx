@@ -1,17 +1,22 @@
-import React from 'react'
-import "./modal.css"
-
+import React, { useRef } from 'react'
+// import useOutsideAlerter from '../../hooks/useOutsideModal'
+import { ModalContainer, ModalSection } from './Modal.styles'
 
 const MyModal = ({ handleClose, show, children }) => {
-  const showHideClassName = show ? 'modal display-block' : 'modal display-none'
+  const wrapperRef = useRef(null)
+  // useOutsideAlerter(wrapperRef)
+
+  // const [showModal] = useOutsideAlerter(wrapperRef)
 
   return (
-    <div className={showHideClassName}>
-      <section className="modal-main">
+    <ModalContainer show={show} ref={wrapperRef}>
+      <ModalSection>
         {children}
-        <button onClick={handleClose}>close</button>
-      </section>
-    </div>
+        <button className="close" onClick={handleClose}>
+          X
+        </button>
+      </ModalSection>
+    </ModalContainer>
   )
 }
 

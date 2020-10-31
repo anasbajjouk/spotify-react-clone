@@ -19,8 +19,34 @@ import MyModal from '../modal/Modal'
 const spotifyApi = new SpotifyWebApi()
 
 const Initialize = ({ setToken, setCurrentUser, setPlaylists, user }) => {
-  const { token } = user
-  const [show, setShow] = useState(true)
+  const { token, currentUser } = user
+  const [show, setShow] = useState(false)
+  const [textInput, setTextInput] = useState('')
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      createMyPlaylist()
+    }
+  }
+
+  const createMyPlaylist = async (e) => {
+    setShow(false)
+
+    await spotifyApi
+      .createPlaylist(currentUser?.id, {
+        name: textInput,
+        public: true,
+      })
+      .catch((err) => console.error(err))
+
+    await spotifyApi
+      .getUserPlaylists()
+      .then((playlists) => {
+        setPlaylists(playlists?.items)
+      })
+      .catch((err) => console.error('error', err))
+  }
+
   useEffect(() => {
     const hash = getTokenFromUrl()
     let _token = hash.access_token
@@ -53,10 +79,21 @@ const Initialize = ({ setToken, setCurrentUser, setPlaylists, user }) => {
 
   return (
     <>
-      <MyModal show={show} handleClose={() => setShow(false)}>
-        <p>Modal</p>
-        <p>Data</p>
-      </MyModal>
+      {show && (
+        <MyModal show={show} handleClose={() => setShow(false)}>
+          <input
+            type="text"
+            placeholder="Name of the new playlist"
+            value={textInput}
+            onChange={(e) => setTextInput(e.target.value)}
+            onKeyPress={(e) => handleKeyPress(e)}
+          />
+          <button type="submit" onClick={createMyPlaylist}>
+            CREATE
+          </button>
+        </MyModal>
+      )}
+
       {token ? (
         <Player
           spotifyApi={spotifyApi}

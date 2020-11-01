@@ -4,7 +4,7 @@ const INITIAL_STATE = {
   spotify: null,
   currentUser: null,
   token:
-    'BQCU2ifOHe2qUKNi25BpulFRi4cFhMMX-6OuXLgqefuLhJ6U1vzLcnzCGMXpYbi5w8Zh7ELMMxdj54ZDvwBQx2Xq8StVlOY9qAwEpRFrV4yRhGO_DoLMfLULVGdXI2YltO5CXUZb345kDTTVTsh05FJzgju5oACJJ_KrYacHD6ltrimIpQdNkyqXundEcjjxwkyk_n7DtYaNcIUG0Xs7VCxLVVFlzbSl-90G-tQ9iPsoYwY3bv25LO4VSM4tcsIstxb69bqIAwTjeO0O67lJe3MMMqRfr5jYxhqr',
+    'BQDh5BMHQJuKOlG1uq7FWhmBnrUttW9RH9XokQUvXJwc2Cv_7tsogPU0As7IYBe8Q9nmseAr0lC6qBYPx-3LX5xOAWzKK6etwTXnRlBghrN0TW9xLrB7xX_Rja01OmRb0sv0F6dLZYTE1kDd-8UHU0iLuBlZJxfn48tpP4wld6o63T-bwdlH4QzWjp_PqCiWb9L31TjR4fatIc5vTM8rZYnhqL7CcVRXYEXY7h_HfOxC0kolxAi6qTSTjT0vJFjwChf7IScUsGY6ZCbeHgHG2bZdmpgkSzgFDjht',
 }
 
 const userReducer = (state = INITIAL_STATE, action) => {

@@ -8,6 +8,9 @@ import { setRecentlyPlayed } from '../../redux/playback/playback.actions'
 import Home from '../../pages/home/Home'
 import Playlist from '../../pages/playlist/Playlist'
 import { setPlaylist } from '../../redux/playlists/playlists.actions'
+import Card from '../card/Card'
+import { CardsHolder } from '../Elements'
+import YourLibrary from '../yourLibrary/YourLibrary'
 // import Page404 from '../../pages/page404/page-404.component'
 
 const Body = ({
@@ -26,6 +29,7 @@ const Body = ({
     recentPlayedTracks: { limit, recentlyPlayed },
   } = playback || {}
 
+  const myPlaylists = playlists?.myPlaylists
   const { images, name, owner, tracks, type } = playlists?.myPlaylist || {}
 
   const location = useLocation()
@@ -111,11 +115,13 @@ const Body = ({
         </Route>
 
         <Route exact path="/search">
-          <h4>Search</h4>
+          <div>search</div>
         </Route>
+
         <Route exact path="/collection/playlists">
-          <h4>Library</h4>
+          <YourLibrary myPlaylists={myPlaylists} />
         </Route>
+
         <Route exact path="/playlist/:id">
           <Playlist
             spotifyApi={spotifyApi}

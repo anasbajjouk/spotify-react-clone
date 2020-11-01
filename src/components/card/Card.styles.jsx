@@ -19,12 +19,17 @@ export const CardContainer = styled.div`
   transition: all 0.2s ease-in-out;
   cursor: pointer;
 
-  & > img {
+  & > img,
+  .imgAlt {
+    background-image: url('https://www.iconninja.com/files/639/91/607/play-music-note-song-audio-sound-player-icon.png');
+    background-repeat: no-repeat;
+    background-position: center;
     object-fit: cover;
     height: 170px;
     width: 180px;
     margin-bottom: 20px;
     border-radius: 3px;
+    border: none;
     -webkit-box-shadow: 22px 19px 77px -10px rgba(0, 0, 0, 0.54);
     -moz-box-shadow: 22px 19px 77px -10px rgba(0, 0, 0, 0.54);
     box-shadow: 22px 19px 77px -10px rgba(0, 0, 0, 0.54);

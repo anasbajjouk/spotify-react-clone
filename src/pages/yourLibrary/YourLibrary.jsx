@@ -1,6 +1,6 @@
 import React from 'react'
-import Card from '../card/Card'
-import { CardsHolder } from '../Elements'
+import Card from '../../components/card/Card'
+import { CardsHolder } from '../../components/Elements'
 
 const YourLibrary = ({ myPlaylists }) => {
   return (

@@ -10,7 +10,7 @@ import Playlist from '../../pages/playlist/Playlist'
 import { setPlaylist } from '../../redux/playlists/playlists.actions'
 import Card from '../card/Card'
 import { CardsHolder } from '../Elements'
-import YourLibrary from '../yourLibrary/YourLibrary'
+import YourLibrary from '../../pages/yourLibrary/YourLibrary'
 // import Page404 from '../../pages/page404/page-404.component'
 
 const Body = ({

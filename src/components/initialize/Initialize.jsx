@@ -15,6 +15,7 @@ import {
   setPlayingTrack,
 } from '../../redux/playback/playback.actions'
 import MyModal from '../modal/Modal'
+import { handleKeyPress } from '../../common/utils'
 
 const spotifyApi = new SpotifyWebApi()
 
@@ -22,12 +23,6 @@ const Initialize = ({ setToken, setCurrentUser, setPlaylists, user }) => {
   const { token, currentUser } = user
   const [show, setShow] = useState(false)
   const [textInput, setTextInput] = useState('')
-
-  const handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
-      createMyPlaylist()
-    }
-  }
 
   const createMyPlaylist = async (e) => {
     setShow(false)
@@ -86,7 +81,7 @@ const Initialize = ({ setToken, setCurrentUser, setPlaylists, user }) => {
             placeholder="Name of the new playlist"
             value={textInput}
             onChange={(e) => setTextInput(e.target.value)}
-            onKeyPress={(e) => handleKeyPress(e)}
+            onKeyPress={(e) => handleKeyPress(e, 'Enter', createMyPlaylist)}
           />
           <button type="submit" onClick={createMyPlaylist}>
             CREATE

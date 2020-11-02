@@ -4,23 +4,50 @@ import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp'
 import NavigateNextIcon from '@material-ui/icons/NavigateNext'
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore'
+import SearchIcon from '@material-ui/icons/Search'
 import { BlackCircle } from '../Elements'
 import Dropdown from '../dropdown/Dropdown'
 import { HeaderContainer } from './Header.styles'
+import { handleKeyPress } from '../../common/utils'
 
-const Header = ({ navbar, dropdownData, image, name }) => {
+const Header = ({
+  navbar,
+  dropdownData,
+  image,
+  name,
+  searchLocation,
+  searchInput,
+  setSearchInput,
+  sendSearch
+}) => {
   const [showMenu, setShowMenu] = useState(false)
+
   return (
     <>
       <HeaderContainer active={navbar} id="header">
         <div className="header__left">
-          <BlackCircle>
-            <NavigateBeforeIcon />
-          </BlackCircle>
+          <div className="buttons">
+            <BlackCircle>
+              <NavigateBeforeIcon />
+            </BlackCircle>
 
-          <BlackCircle>
-            <NavigateNextIcon />
-          </BlackCircle>
+            <BlackCircle>
+              <NavigateNextIcon />
+            </BlackCircle>
+          </div>
+
+          {searchLocation && (
+            <div className="searchField">
+              <SearchIcon />
+              <input
+                onKeyPress={(e) => handleKeyPress(e, 'Enter', sendSearch)}
+                onChange={(e) => setSearchInput(e.target.value)}
+                value={searchInput}
+                type="text"
+                placeholder="Search for Artists, Songs or Podcasts"
+              />
+            </div>
+          )}
         </div>
 
         <div className="header__right" onClick={() => setShowMenu(!showMenu)}>

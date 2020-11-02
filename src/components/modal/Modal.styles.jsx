@@ -8,6 +8,7 @@ export const ModalContainer = styled.div`
   display: ${({ show }) => (show ? 'flex' : 'none')};
   justify-content: center;
   align-items: center;
+  z-index: 5;
 `
 
 export const ModalSection = styled.section`

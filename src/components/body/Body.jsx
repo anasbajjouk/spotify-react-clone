@@ -7,10 +7,14 @@ import { connect } from 'react-redux'
 import { setRecentlyPlayed } from '../../redux/playback/playback.actions'
 import Home from '../../pages/home/Home'
 import Playlist from '../../pages/playlist/Playlist'
-import { setPlaylist } from '../../redux/playlists/playlists.actions'
-import Card from '../card/Card'
-import { CardsHolder } from '../Elements'
+import {
+  setGenres,
+  setPlaylist,
+  setSearchResults,
+} from '../../redux/playlists/playlists.actions'
 import YourLibrary from '../../pages/yourLibrary/YourLibrary'
+import SearchPage from '../../pages/searchPage/SearchPage'
+
 // import Page404 from '../../pages/page404/page-404.component'
 
 const Body = ({
@@ -20,10 +24,14 @@ const Body = ({
   playlists,
   setRecentlyPlayed,
   setPlaylist,
+  setGenres,
+  setSearchResults,
 }) => {
   const [navbar, setNavbar] = useState(false)
   const [myLimit, setLimit] = useState(20)
+  const [searchInput, setSearchInput] = useState('')
   const myRef = useRef()
+
   const { token, currentUser } = user || {}
   const {
     recentPlayedTracks: { limit, recentlyPlayed },
@@ -35,11 +43,13 @@ const Body = ({
   const location = useLocation()
 
   let homeLocation = location.pathname === '/home' || location.pathname === '/'
+  let searchLocation = location.pathname === '/search'
+
   let urlId = location.pathname.split('/playlist/')[1]
 
   const handleScroll = () => {
     const scrollTop = myRef.current.scrollTop
-    if (scrollTop >= 40) {
+    if (scrollTop >= 10) {
       setNavbar(true)
     } else {
       setNavbar(false)
@@ -52,6 +62,14 @@ const Body = ({
     } else {
       setLimit(20)
     }
+  }
+
+  const sendSearch = () => {
+    searchInput.length > 0 &&
+      spotifyApi
+        .searchTracks(searchInput, {limit:40})
+        .then((data) => setSearchResults(data?.tracks))
+        .catch((err) => console.error(err))
   }
 
   useEffect(() => {
@@ -87,8 +105,14 @@ const Body = ({
         setPlaylist(finalData)
       })
       .catch((err) => console.error('error', err))
+
+    // Get available genre seeds
+    spotifyApi
+      .getAvailableGenreSeeds()
+      .then((data) => setGenres(data.genres))
+      .catch((err) => console.error('error', err))
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [myLimit, urlId])
+  }, [myLimit, urlId, token])
 
   return (
     <>
@@ -98,13 +122,17 @@ const Body = ({
         homeLocation={homeLocation}
       >
         <Header
+          sendSearch={sendSearch}
+          searchInput={searchInput}
+          setSearchInput={setSearchInput}
           navbar={navbar}
           dropdownData={dropdownData}
           image={currentUser?.images[0]}
           name={currentUser?.display_name}
+          searchLocation={searchLocation}
         />
 
-        <Route exact path={['/home', '/', '/#']}>
+        <Route exact path={['/home', '/']}>
           <Home
             title={'Recently played'}
             seeAll={true}
@@ -115,7 +143,11 @@ const Body = ({
         </Route>
 
         <Route exact path="/search">
-          <div>search</div>
+          <SearchPage
+            searchInput={searchInput}
+            genres={playlists?.myGenres}
+            myResults={playlists?.mySearchList}
+          />
         </Route>
 
         <Route exact path="/collection/playlists">
@@ -147,6 +179,9 @@ const mapDispatchToProps = (dispatch) => ({
   setRecentlyPlayed: (recentlyPlayed, limit) =>
     dispatch(setRecentlyPlayed(recentlyPlayed, limit)),
   setPlaylist: (playlist) => dispatch(setPlaylist(playlist)),
+  setGenres: (genres) => dispatch(setGenres(genres)),
+  setSearchResults: (searchResults) =>
+    dispatch(setSearchResults(searchResults)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Body)

@@ -9,3 +9,13 @@ export const setPlaylist = (playlist) => ({
   type: PlaylistsActionTypes.SET_PLAYLIST,
   payload: playlist,
 })
+
+export const setGenres = (genres) => ({
+  type: PlaylistsActionTypes.SET_GENRES,
+  payload: genres,
+})
+
+export const setSearchResults = (searchResults) => ({
+  type: PlaylistsActionTypes.SET_SEARCH_RESULTS,
+  payload: searchResults,
+})

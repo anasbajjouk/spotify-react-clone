@@ -41,9 +41,12 @@ export const H3 = styled(H1)`
 `
 
 export const CardsHolder = styled.div`
-  /* z-index: -1; */
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(203px, 1fr));
+  /* grid-template-columns: repeat(auto-fill, minmax(203px, 1fr)); */
+  grid-template-columns: ${({ repeatXTime }) =>
+    repeatXTime
+      ? `repeat(${repeatXTime}, minmax(203px, 1fr))`
+      : `repeat(auto-fill, minmax(203px, 1fr))`};
   justify-items: center;
   grid-gap: 15px;
   margin: 10px 0 30px 0;

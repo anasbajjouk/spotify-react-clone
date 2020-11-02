@@ -13,15 +13,42 @@ export const HeaderContainer = styled.div`
   background-color: ${({ theme, active }) =>
     active ? theme.darkTheme.header : 'transparent'};
   color: white;
-
-  & .header__right h4 {
-    margin-left: 10px;
-  }
+  transition: all 0.1s cubic-bezier(0.1, 0.79, 0.57, 0.44);
 
   & .header__left {
     display: flex;
     justify-content: space-between;
-    flex: 0.07;
+    align-items: center;
+    /* flex: 0.07; */
+    flex: 0.5;
+
+    & > .buttons {
+      display: flex;
+      justify-content: space-between;
+      flex: 0.16;
+      min-width: 90px;
+      max-width: 90px;
+    }
+
+    & > .searchField {
+      flex: 0.76;
+      align-items: center;
+      display: flex;
+      background-color: #fff;
+      border-radius: 30px;
+      padding: 10px;
+      color: gray;
+
+      & input {
+        font-size: 15px;
+        background-color: inherit;
+        padding: 0 10px;
+        border-radius: 30px;
+        outline: none;
+        border: none;
+        width: 100%;
+      }
+    }
   }
 
   & .header__right {
@@ -29,5 +56,9 @@ export const HeaderContainer = styled.div`
     display: inline-block;
     cursor: pointer;
     min-width: 100px;
+
+    & h4 {
+      margin-left: 10px;
+    }
   }
 `

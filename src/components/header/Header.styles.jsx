@@ -21,6 +21,8 @@ export const HeaderContainer = styled.div`
     align-items: center;
     /* flex: 0.07; */
     flex: 0.5;
+    min-width: 600px;
+    max-width: 600px;
 
     & > .buttons {
       display: flex;
@@ -31,7 +33,9 @@ export const HeaderContainer = styled.div`
     }
 
     & > .searchField {
-      flex: 0.76;
+      min-width: 450px;
+      max-width: 450px;
+      flex: 0.84;
       align-items: center;
       display: flex;
       background-color: #fff;

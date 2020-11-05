@@ -16,7 +16,7 @@ const Sidebar = ({ playlists, showModal }) => {
     <SidebarContainer>
       <img src={Spotify_Logo_RGB_White} alt="Spotify_Logo" />
 
-      <Options title="Home" Icon={HomeIcon} toPath="/home" />
+      <Options title="Home" Icon={HomeIcon} toPath="/" />
 
       <Options title="Search" Icon={SearchIcon} toPath="/search" />
 

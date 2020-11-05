@@ -16,6 +16,7 @@ import {
 } from '../../redux/playback/playback.actions'
 import MyModal from '../modal/Modal'
 import { handleKeyPress } from '../../common/utils'
+import errorHandler from '../../api/errorHandler'
 
 const spotifyApi = new SpotifyWebApi()
 
@@ -32,14 +33,14 @@ const Initialize = ({ setToken, setCurrentUser, setPlaylists, user }) => {
         name: textInput,
         public: true,
       })
-      .catch((err) => console.error(err))
+      .catch((err) => errorHandler(err.response))
 
     await spotifyApi
       .getUserPlaylists()
       .then((playlists) => {
         setPlaylists(playlists?.items)
       })
-      .catch((err) => console.error('error', err))
+      .catch((err) => errorHandler(err.response))
   }
 
   useEffect(() => {
@@ -59,14 +60,14 @@ const Initialize = ({ setToken, setCurrentUser, setPlaylists, user }) => {
         .then((user) => {
           setCurrentUser(user)
         })
-        .catch((err) => console.error(err))
+        .catch((err) => errorHandler(err.response))
 
       spotifyApi
         .getUserPlaylists()
         .then((playlists) => {
           setPlaylists(playlists?.items)
         })
-        .catch((err) => console.error('error', err))
+        .catch((err) => errorHandler(err.response))
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -88,7 +89,6 @@ const Initialize = ({ setToken, setCurrentUser, setPlaylists, user }) => {
           </button>
         </MyModal>
       )}
-
       {token ? (
         <Player
           spotifyApi={spotifyApi}

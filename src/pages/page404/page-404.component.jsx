@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 //Styles
-// import './page-404.styles.css'
+import './page-404.styles.css'
 
 const Page404 = () => {
   return (

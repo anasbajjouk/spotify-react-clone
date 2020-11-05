@@ -1,35 +1,39 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import Card from '../../components/card/Card'
 import { CardsHolder, H2 } from '../../components/Elements'
 import { SearchPageContainer, SearchCard } from './SearchPage.styles'
 
-const SearchPage = ({ searchInput, genres, myResults }) => {
+const SearchPage = ({ searchInput, genres, myResults, handleClick, limit }) => {
   const { items } = myResults
 
   return (
     <SearchPageContainer>
-      {searchInput.length > 0 ? (
+      {searchInput.length > 0 && items ? (
         <>
-          {items && <H2>My Result</H2>}
+          {items && <H2 style={{ width: 'max-content' }}>My Result</H2>}
           <CardsHolder>
-            {items?.map((item) => (
-              <Card tracksPlayed={item} />
+            {items?.map((item, i) => (
+              <Card key={i + 1573} tracksPlayed={item} />
             ))}
           </CardsHolder>
         </>
       ) : null}
 
-      <H2>Genres</H2>
+      <H2 style={{ width: 'max-content' }}>Genres</H2>
       <CardsHolder>
-        {genres.map((genre, i) => {
-          let hue = Math.floor(Math.random() * 361)
-          let name = genre[0].toUpperCase() + genre.slice(1)
-          return (
-            <SearchCard key={i + 568} hue={hue}>
-              <h2>{name}</h2>
-            </SearchCard>
-          )
-        })}
+        {useMemo(
+          () =>
+            genres.map((genre, i) => {
+              const hue = Math.floor(Math.random() * 361)
+              const name = genre[0].toUpperCase() + genre.slice(1)
+              return (
+                <SearchCard key={i + 568} hue={hue}>
+                  <h2>{name}</h2>
+                </SearchCard>
+              )
+            }),
+          [genres]
+        )}
       </CardsHolder>
     </SearchPageContainer>
   )

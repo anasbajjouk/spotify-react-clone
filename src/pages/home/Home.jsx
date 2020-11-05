@@ -3,7 +3,6 @@ import BodyTitle from '../../components/bodyTitle/BodyTitle'
 import Card from '../../components/card/Card'
 import { CardsHolder } from '../../components/Elements'
 
-
 const Home = ({ title, seeAll, limit, handleClick, recentlyPlayed }) => {
   return (
     <div>

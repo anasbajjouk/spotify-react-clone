@@ -46,9 +46,35 @@ const defaultColors = {
     black: '#040404',
     grey: '#9a9a9a',
     header: '#121212',
+    error: '#DD1C1A',
+    warning: '#FFA023',
+    success: '#36C2CE',
+    info: '#8DC6FF',
+    white: '#fff',
+    default: '#1ed15e',
   },
 }
 
 const theme = { ...defaultColors, ...customaryStyles }
+
+const attrSpreader = (obj, attrPrefix) => {
+  let spreadedAttrs = ''
+
+  for (const attr in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, attr)) {
+      spreadedAttrs += `${attrPrefix}${attr}:${obj[attr]};`
+    }
+  }
+  return spreadedAttrs
+}
+
+export const cssVariables = `
+:root{
+  ${attrSpreader(theme.darkTheme, '--color-')}
+  ${attrSpreader(theme.font, '--font-')}
+  ${attrSpreader(theme.typography, '--typography-')}
+  ${attrSpreader(theme.breakpoints, '--media-')}
+}
+`
 
 export default theme

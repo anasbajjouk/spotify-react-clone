@@ -1,7 +1,5 @@
-/* #notfound_wrapper {
-  position: relative;
-  height: 100%;
-  background-color: #262626;
+#notfound_wrapper {
+  color: white;
 }
 
 #notfound {
@@ -33,17 +31,15 @@
 }
 
 .notfound .notfound-404 h1 {
-  font-family: 'Titillium Web', sans-serif;
-  font-size: 186px;
+  font-size: 176px;
   font-weight: 900;
-  margin: 0px;
-  text-transform: uppercase;
-  background: url('../../assets/image/text.png');
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-size: cover;
-  background-position: center;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: unset;
+  -moz-osx-font-smoothing: grayscale;
+  font-smoothing: antialiased;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 .notfound h2 {
@@ -68,7 +64,7 @@
   color: #fff;
   text-decoration: none;
   border: none;
-  background: #338af3;
+  background: rgb(30, 215, 96);
   padding: 10px 40px;
   font-size: 14px;
   font-weight: 700;
@@ -91,4 +87,4 @@
   .notfound .notfound-404 h1 {
     font-size: 120px;
   }
-} */
+}

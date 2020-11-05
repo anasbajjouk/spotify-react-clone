@@ -12,6 +12,7 @@ import {
 import FooterLeft from '../footerLeft/FooterLeft'
 import FooterCenter from '../footerCenter/FooterCenter'
 import FooterRight from '../footerRight/FooterRight'
+import errorHandler from '../../api/errorHandler'
 
 const Footer = ({
   playback,
@@ -63,7 +64,7 @@ const Footer = ({
       .then((track) => {
         setPlayingTrack(track)
       })
-      .catch((err) => console.error('error', err))
+      .catch((err) => errorHandler(err.response))
 
     // Get Information About The User's Current Playback State
     spotifyApi
@@ -71,7 +72,7 @@ const Footer = ({
       .then((track) => {
         setCurrentPlaybackState(track)
       })
-      .catch((err) => console.error('error', err))
+      .catch((err) => errorHandler(err.response))
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [

@@ -18,7 +18,8 @@ const Header = ({
   searchLocation,
   searchInput,
   setSearchInput,
-  sendSearch
+  sendSearch,
+  history,
 }) => {
   const [showMenu, setShowMenu] = useState(false)
 
@@ -27,11 +28,11 @@ const Header = ({
       <HeaderContainer active={navbar} id="header">
         <div className="header__left">
           <div className="buttons">
-            <BlackCircle>
+            <BlackCircle onClick={() => history.goBack()}>
               <NavigateBeforeIcon />
             </BlackCircle>
 
-            <BlackCircle>
+            <BlackCircle onClick={() => history.goForward()}>
               <NavigateNextIcon />
             </BlackCircle>
           </div>

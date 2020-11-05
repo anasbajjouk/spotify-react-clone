@@ -1,6 +1,8 @@
 import { createGlobalStyle } from 'styled-components'
+import { cssVariables } from './theme'
 
 export const GlobalStyles = createGlobalStyle`
+${cssVariables};
 *,
 *::after,
 *::before{

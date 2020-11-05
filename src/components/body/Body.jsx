@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Route, useLocation } from 'react-router-dom'
+import { Route, useLocation, useHistory, Switch } from 'react-router-dom'
 import Header from '../header/Header'
 import { BodyContainer } from './Body.styles'
 import { dropdownData } from '../../common/data'
@@ -14,8 +14,8 @@ import {
 } from '../../redux/playlists/playlists.actions'
 import YourLibrary from '../../pages/yourLibrary/YourLibrary'
 import SearchPage from '../../pages/searchPage/SearchPage'
-
-// import Page404 from '../../pages/page404/page-404.component'
+import Page404 from '../../pages/page404/page-404.component'
+import errorHandler from '../../api/errorHandler'
 
 const Body = ({
   spotifyApi,
@@ -30,6 +30,7 @@ const Body = ({
   const [navbar, setNavbar] = useState(false)
   const [myLimit, setLimit] = useState(20)
   const [searchInput, setSearchInput] = useState('')
+
   const myRef = useRef()
 
   const { token, currentUser } = user || {}
@@ -41,8 +42,9 @@ const Body = ({
   const { images, name, owner, tracks, type } = playlists?.myPlaylist || {}
 
   const location = useLocation()
+  const history = useHistory()
 
-  let homeLocation = location.pathname === '/home' || location.pathname === '/'
+  let homeLocation = location.pathname === '/'
   let searchLocation = location.pathname === '/search'
 
   let urlId = location.pathname.split('/playlist/')[1]
@@ -67,9 +69,9 @@ const Body = ({
   const sendSearch = () => {
     searchInput.length > 0 &&
       spotifyApi
-        .searchTracks(searchInput, {limit:40})
+        .searchTracks(searchInput, { limit: 20 })
         .then((data) => setSearchResults(data?.tracks))
-        .catch((err) => console.error(err))
+        .catch((err) => errorHandler(err.response))
   }
 
   useEffect(() => {
@@ -81,36 +83,37 @@ const Body = ({
         limit: myLimit,
       })
       .then((data) => setRecentlyPlayed(data.items, data.limit))
-      .catch((err) => console.error('error', err))
+      .catch((err) => errorHandler(err.response))
 
-    spotifyApi
-      .getPlaylist(urlId)
-      .then((data) => {
-        const {
-          images,
-          name,
-          owner: { display_name },
-          tracks: { total, items },
-          type,
-        } = data || {}
+    urlId &&
+      spotifyApi
+        .getPlaylist(urlId)
+        .then((data) => {
+          const {
+            images,
+            name,
+            owner: { display_name },
+            tracks: { total, items },
+            type,
+          } = data || {}
 
-        const finalData = {
-          images,
-          name,
-          owner: { display_name },
-          tracks: { total, items },
-          type,
-        }
+          const finalData = {
+            images,
+            name,
+            owner: { display_name },
+            tracks: { total, items },
+            type,
+          }
 
-        setPlaylist(finalData)
-      })
-      .catch((err) => console.error('error', err))
+          setPlaylist(finalData)
+        })
+        .catch((err) => errorHandler(err.response))
 
     // Get available genre seeds
     spotifyApi
       .getAvailableGenreSeeds()
       .then((data) => setGenres(data.genres))
-      .catch((err) => console.error('error', err))
+      .catch((err) => errorHandler(err.response))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [myLimit, urlId, token])
 
@@ -122,6 +125,7 @@ const Body = ({
         homeLocation={homeLocation}
       >
         <Header
+          history={history}
           sendSearch={sendSearch}
           searchInput={searchInput}
           setSearchInput={setSearchInput}
@@ -132,38 +136,42 @@ const Body = ({
           searchLocation={searchLocation}
         />
 
-        <Route exact path={['/home', '/']}>
-          <Home
-            title={'Recently played'}
-            seeAll={true}
-            limit={limit}
-            handleClick={handleClick}
-            recentlyPlayed={recentlyPlayed}
-          />
-        </Route>
+        <Switch>
+          <Route exact path="/">
+            <Home
+              title={'Recently played'}
+              seeAll={true}
+              limit={limit}
+              handleClick={handleClick}
+              recentlyPlayed={recentlyPlayed}
+            />
+          </Route>
 
-        <Route exact path="/search">
-          <SearchPage
-            searchInput={searchInput}
-            genres={playlists?.myGenres}
-            myResults={playlists?.mySearchList}
-          />
-        </Route>
+          <Route exact path="/search">
+            <SearchPage
+              searchInput={searchInput}
+              genres={playlists?.myGenres}
+              myResults={playlists?.mySearchList}
+            />
+          </Route>
 
-        <Route exact path="/collection/playlists">
-          <YourLibrary myPlaylists={myPlaylists} />
-        </Route>
+          <Route exact path="/collection/playlists">
+            <YourLibrary myPlaylists={myPlaylists} />
+          </Route>
 
-        <Route exact path="/playlist/:id">
-          <Playlist
-            spotifyApi={spotifyApi}
-            type={type}
-            name={name}
-            images={images}
-            owner={owner?.display_name}
-            tracks={tracks}
-          />
-        </Route>
+          <Route exact path="/playlist/:id">
+            <Playlist
+              spotifyApi={spotifyApi}
+              type={type}
+              name={name}
+              images={images}
+              owner={owner?.display_name}
+              tracks={tracks}
+            />
+          </Route>
+
+          <Route path="*" component={Page404} />
+        </Switch>
       </BodyContainer>
     </>
   )

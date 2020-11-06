@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/anasbajjouk/spotify-react-clone/static/css/main.b6d1f9d8.chunk.css",
+    "main.js": "/anasbajjouk/spotify-react-clone/static/js/main.eb6f2c56.chunk.js",
+    "main.js.map": "/anasbajjouk/spotify-react-clone/static/js/main.eb6f2c56.chunk.js.map",
+    "runtime-main.js": "/anasbajjouk/spotify-react-clone/static/js/runtime-main.355faf1c.js",
+    "runtime-main.js.map": "/anasbajjouk/spotify-react-clone/static/js/runtime-main.355faf1c.js.map",
+    "static/js/2.427e6333.chunk.js": "/anasbajjouk/spotify-react-clone/static/js/2.427e6333.chunk.js",
+    "static/js/2.427e6333.chunk.js.map": "/anasbajjouk/spotify-react-clone/static/js/2.427e6333.chunk.js.map",
+    "index.html": "/anasbajjouk/spotify-react-clone/index.html",
+    "precache-manifest.c07aa9eae40d0f7defb10b3ad8671a50.js": "/anasbajjouk/spotify-react-clone/precache-manifest.c07aa9eae40d0f7defb10b3ad8671a50.js",
+    "service-worker.js": "/anasbajjouk/spotify-react-clone/service-worker.js",
+    "static/css/main.b6d1f9d8.chunk.css.map": "/anasbajjouk/spotify-react-clone/static/css/main.b6d1f9d8.chunk.css.map",
+    "static/js/2.427e6333.chunk.js.LICENSE.txt": "/anasbajjouk/spotify-react-clone/static/js/2.427e6333.chunk.js.LICENSE.txt",
+    "static/media/Spotify_Logo_RGB_Green.svg": "/anasbajjouk/spotify-react-clone/static/media/Spotify_Logo_RGB_Green.7db352f3.svg",
+    "static/media/Spotify_Logo_RGB_White.svg": "/anasbajjouk/spotify-react-clone/static/media/Spotify_Logo_RGB_White.22bed033.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.355faf1c.js",
+    "static/js/2.427e6333.chunk.js",
+    "static/css/main.b6d1f9d8.chunk.css",
+    "static/js/main.eb6f2c56.chunk.js"
+  ]
+}

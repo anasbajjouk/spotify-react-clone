@@ -35,5 +35,5 @@ export const loginUrl = `${PROS_ENV.REACT_APP_AUTH_ENDPOINT}
 ?client_id=${PROS_ENV.REACT_APP_CLIENT_ID}
 &response_type=token&redirect_uri=${PROS_ENV.REACT_APP_REDIRECT_URI}
 &scope=${scopes.join('%20')}
-&state=34fFs29kd09&show_dialog=false`
+&state=34fFs29kd09&show_dialog=true`
 

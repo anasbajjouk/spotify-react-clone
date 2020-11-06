@@ -78,7 +78,8 @@ const Body = ({
   useEffect(() => {
     spotifyApi.setAccessToken(token)
     toast.info(
-      'Try to connect your device to your spotify first in order to access this app. If nothing shows up, please do refresh the page!'
+      'Try to connect your device to your spotify first,we recommand to play some song as well in order to use this app. If nothing shows up, please do refresh the page! Please keep in mind this app is only a demo of the FE skills.',
+      { toastId: 'load' }
     )
 
     // Get Current User's Recently Played Tracks

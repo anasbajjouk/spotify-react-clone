@@ -16,7 +16,6 @@ import YourLibrary from '../../pages/yourLibrary/YourLibrary'
 import SearchPage from '../../pages/searchPage/SearchPage'
 import Page404 from '../../pages/page404/page-404.component'
 import errorHandler from '../../api/errorHandler'
-import { toast } from 'react-toastify'
 
 const Body = ({
   spotifyApi,
@@ -74,18 +73,18 @@ const Body = ({
         .then((data) => setSearchResults(data?.tracks))
         .catch((err) => errorHandler(err.response))
   }
+//  toast.info(
+//       'Try to connect your device to your spotify first,we recommand to play some song as well in order to use this app. If nothing shows up, please do refresh the page! Please keep in mind this app is only a demo of the FE skills.',
+//       { toastId: 'load' }
+//     )
 
   useEffect(() => {
     spotifyApi.setAccessToken(token)
-    toast.warning(
-      'This app is only web based, phones will not show it properly.',
-      { toastId: 'onphone' }
-    )
-    toast.info(
-      'Try to connect your device to your spotify first,we recommand to play some song as well in order to use this app. If nothing shows up, please do refresh the page! Please keep in mind this app is only a demo of the FE skills.',
-      { toastId: 'load' }
-    )
-
+    // toast.warning(
+    //   'This app is only web based, phones will not show it properly.',
+    //   { toastId: 'onphone' }
+    // )
+   
     // Get Current User's Recently Played Tracks
     spotifyApi
       .getMyRecentlyPlayedTracks({

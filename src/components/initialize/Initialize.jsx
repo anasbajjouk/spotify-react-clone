@@ -100,6 +100,7 @@ const Initialize = ({ setToken, setCurrentUser, setPlaylists, user }) => {
   )
 }
 
+
 const mapStateToProps = (state) => ({
   user: state.user,
 })

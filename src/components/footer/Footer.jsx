@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect /*seState*/ } from 'react'
+import { toast } from 'react-toastify'
 import { FooterContainer } from './Footer.styles'
 import { connect } from 'react-redux'
 import {
@@ -36,20 +37,20 @@ const Footer = ({
     device: { volume_percent } = 95,
   } = playback?.currentPlaybackState || {}
 
-  let { name, duration_ms, album, artists } = item || {}
+  let { name, /*duration_ms,*/ album, artists } = item || {}
   let { images } = album || {}
 
-  let [value, setValue] = useState(0)
+  // let [value, setValue] = useState(0)
 
-  const marks = [
-    {
-      value: 0,
-    },
+  // const marks = [
+  //   {
+  //     value: 0,
+  //   },
 
-    {
-      value: parseInt(duration_ms),
-    },
-  ]
+  //   {
+  //     value: parseInt(duration_ms),
+  //   },
+  // ]
 
   useEffect(() => {
     spotifyApi.setAccessToken(token)
@@ -62,6 +63,11 @@ const Footer = ({
     spotifyApi
       .getMyCurrentPlayingTrack()
       .then((track) => {
+        Object.keys(track).length < 1 &&
+          toast.info(
+            'Try to connect your device to your spotify first,we recommand to play some song as well in order to use this app. If nothing shows up, please do refresh the page! Please keep in mind this app is only a demonstration of the FE side of things.',
+            { toastId: 'load' }
+          )
         setPlayingTrack(track)
       })
       .catch((err) => errorHandler(err.response))
@@ -143,10 +149,10 @@ const Footer = ({
     }
   }
 
-  const handleSlide = (event, newValue) => {
-    setValue(newValue)
-    spotifyApi.seek(value).catch((err) => errorHandler(err.response))
-  }
+  // const handleSlide = (event, newValue) => {
+  //   setValue(newValue)
+  //   spotifyApi.seek(value).catch((err) => errorHandler(err.response))
+  // }
 
   const handleVolume = (event, newValue) => {
     setMyVolume(newValue)
@@ -165,15 +171,15 @@ const Footer = ({
         shuffleState={shuffleState}
         playing={playing}
         repeatState={repeatState}
-        duration_ms={duration_ms}
-        value={value}
-        marks={marks}
+        // duration_ms={duration_ms}
+        // value={value}
+        // marks={marks}
         handleShuffle={handleShuffle}
         skipNext={skipNext}
         handlePlayPause={handlePlayPause}
         skipPrevious={skipPrevious}
         handleRepeat={handleRepeat}
-        handleSlide={handleSlide}
+        // handleSlide={handleSlide}
       />
       <FooterRight volume={volumeState} handleVolume={handleVolume} />
     </FooterContainer>

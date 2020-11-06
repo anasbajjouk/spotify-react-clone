@@ -12,15 +12,15 @@ const FooterCenter = ({
   shuffleState,
   playing,
   repeatState,
-  duration_ms,
-  value,
-  marks,
+  // duration_ms,
+  // value,
+  // marks,
   skipNext,
   handleShuffle,
   handlePlayPause,
   skipPrevious,
   handleRepeat,
-  handleSlide,
+  // handleSlide,
 }) => {
   return (
     <FooterCenterContainer>
@@ -63,13 +63,13 @@ const FooterCenter = ({
         </div>
       </div>
 
-      <div className="footerCenter__lower">
+      <div className="footerCenter__lower" style={{ }}>
         <Slider
           min={0}
-          max={duration_ms}
-          value={value}
-          onChange={handleSlide}
-          marks={marks}
+          // max={duration_ms}
+          // value={value}
+          // onChange={handleSlide}
+          // marks={marks}
           aria-labelledby="continuous-slider"
           className="slider footer__green"
         />

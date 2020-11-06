@@ -18,5 +18,7 @@ export const FooterCenterContainer = styled.div`
   & > .footerCenter__lower {
     display: inline;
     width: 100%;
+    opacity: 0.3;
+    pointer-events: none;
   }
 `

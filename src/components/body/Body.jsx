@@ -77,6 +77,10 @@ const Body = ({
 
   useEffect(() => {
     spotifyApi.setAccessToken(token)
+    toast.warning(
+      'This app is only web based, phones will not show it properly',
+      { toastId: 'onphone' }
+    )
     toast.info(
       'Try to connect your device to your spotify first,we recommand to play some song as well in order to use this app. If nothing shows up, please do refresh the page! Please keep in mind this app is only a demo of the FE skills.',
       { toastId: 'load' }

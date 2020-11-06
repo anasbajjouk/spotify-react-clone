@@ -2,11 +2,10 @@
   "name": "spotify-clone",
   "version": "0.1.0",
   "private": false,
-  "homepage": "https://github.com/anasbajjouk/spotify-react-clone",
+  "homepage": ".",
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
-    "gh-pages": "^3.1.0",
     "history": "^5.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

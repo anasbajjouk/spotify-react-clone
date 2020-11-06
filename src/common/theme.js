@@ -48,7 +48,7 @@ const defaultColors = {
     header: '#121212',
     error: '#DD1C1A',
     warning: '#FFA023',
-    success: '#36C2CE',
+    success: '#3ac69d',
     info: '#8DC6FF',
     white: '#fff',
     default: '#1ed15e',

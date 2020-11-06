@@ -18,7 +18,7 @@ const PlaylistHeader = ({ type, name, images, owner, tracks }) => {
       <img src={img} alt={name} />
       <div>
         <small>{type?.toUpperCase()}</small>
-        <H1>{name}</H1>
+        <H1 myFontSize={name?.length > 70 && 30}>{name}</H1>
         <p>
           {owner}
           <strong>

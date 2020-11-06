@@ -5,8 +5,13 @@ const Dropdown = ({ data = [] }) => {
   return (
     <DropdownContainer>
       <ul>
-        {data.map((info) => (
-          <a href={info.link} target="_blank" rel="noopener noreferrer">
+        {data.map((info, i) => (
+          <a
+            key={i + 987645}
+            href={info.link}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <li>{info.text} </li>
           </a>
         ))}

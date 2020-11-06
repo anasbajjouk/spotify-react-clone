@@ -11,8 +11,10 @@ export const PlaylistHeaderContainer = styled.div`
 
   & > img {
     margin-right: 20px;
-    height: 230px;
-    width: 230px;
+    min-height: 230px;
+    max-height: 230px;
+    min-width: 230px;
+    max-width: 230px;
     object-fit: cover;
     box-shadow: 0 0.8px -0.1px rgba(0, 0, 0, 0.001),
       0 2.1px 1.8px rgba(0, 0, 0, 0.003), 0 4.3px 8.5px rgba(0, 0, 0, 0.006),
@@ -23,6 +25,10 @@ export const PlaylistHeaderContainer = styled.div`
   & > div {
     & h1 {
       font-weight: 700;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      text-align: start;
     }
 
     & strong {

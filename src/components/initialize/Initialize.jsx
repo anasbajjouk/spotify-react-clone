@@ -2,11 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import SpotifyWebApi from 'spotify-web-api-js'
 import Login from '../../pages/login/Login'
-import {
-  setCurrentUser,
-  setSpotify,
-  setToken,
-} from '../../redux/user/user.actions'
+import { setCurrentUser, setToken } from '../../redux/user/user.actions'
 import { getTokenFromUrl } from '../../spotify'
 import Player from '../../pages/player/Player'
 import { setPlaylists } from '../../redux/playlists/playlists.actions'
@@ -17,6 +13,7 @@ import {
 import MyModal from '../modal/Modal'
 import { handleKeyPress } from '../../common/utils'
 import errorHandler from '../../api/errorHandler'
+import { toast } from 'react-toastify'
 
 const spotifyApi = new SpotifyWebApi()
 
@@ -41,6 +38,7 @@ const Initialize = ({ setToken, setCurrentUser, setPlaylists, user }) => {
         setPlaylists(playlists?.items)
       })
       .catch((err) => errorHandler(err.response))
+    toast.success('Your Playlist has been added successfully!')
   }
 
   useEffect(() => {
@@ -112,7 +110,6 @@ const mapDispatchToProps = (dispatch) => ({
   setPlaylists: (playlists) => dispatch(setPlaylists(playlists)),
   setPlayingTrack: (track) => dispatch(setPlayingTrack(track)),
   setCurrentPlaybackState: (track) => dispatch(setCurrentPlaybackState(track)),
-  setSpotify: (spotifyConstr) => dispatch(setSpotify(spotifyConstr)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Initialize)

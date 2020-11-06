@@ -1,5 +1,4 @@
 export const UserActionTypes = {
   SET_CURRENT_USER: 'SET_CURRENT_USER',
   SET_TOKEN: 'SET_TOKEN',
-  SET_SPOTIFY: 'SET_SPOTIFY',
 }

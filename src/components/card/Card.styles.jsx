@@ -52,20 +52,4 @@ export const CardContainer = styled.div`
     text-overflow: ellipsis;
     align-self: flex-start;
   }
-
-  & .circle {
-    position: absolute;
-    top: 35%;
-    left: 50%;
-    display: none;
-  }
-
-  &:hover {
-    background-color: #262626;
-
-    & .circle {
-      display: block;
-      top: 45%;
-    }
-  }
 `

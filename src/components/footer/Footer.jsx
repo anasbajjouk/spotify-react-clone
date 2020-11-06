@@ -73,8 +73,6 @@ const Footer = ({
         setCurrentPlaybackState(track)
       })
       .catch((err) => errorHandler(err.response))
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     volume_percent,
     is_playing,
@@ -82,65 +80,77 @@ const Footer = ({
     shuffle_state,
     spotifyApi,
     token,
+    setMyVolume,
+    setPlay,
+    setShuffle,
+    setRepeat,
+    setPlayingTrack,
+    setCurrentPlaybackState,
   ])
 
   const skipNext = () => {
-    spotifyApi.skipToNext()
-    spotifyApi.getMyCurrentPlaybackState().then((track) => {
-      setCurrentPlaybackState(track)
-      setPlay(true)
-    })
+    spotifyApi.skipToNext().catch((err) => errorHandler(err.response))
+    spotifyApi
+      .getMyCurrentPlaybackState()
+      .then((track) => {
+        setCurrentPlaybackState(track)
+        setPlay(true)
+      })
+      .catch((err) => errorHandler(err.response))
   }
 
   const skipPrevious = () => {
-    spotifyApi.skipToPrevious()
-    spotifyApi.getMyCurrentPlaybackState().then((track) => {
-      setCurrentPlaybackState(track)
-      setPlay(true)
-    })
+    spotifyApi.skipToPrevious().catch((err) => errorHandler(err.response))
+    spotifyApi
+      .getMyCurrentPlaybackState()
+      .then((track) => {
+        setCurrentPlaybackState(track)
+        setPlay(true)
+      })
+      .catch((err) => errorHandler(err.response))
   }
 
   const handlePlayPause = () => {
     if (playing) {
-      spotifyApi.pause()
+      spotifyApi.pause().catch((err) => errorHandler(err.response))
       setPlay(false)
     } else {
-      spotifyApi.play()
+      spotifyApi.play().catch((err) => errorHandler(err.response))
       setPlay(true)
     }
   }
 
   const handleShuffle = () => {
     if (shuffleState) {
-      spotifyApi.setShuffle(false)
+      spotifyApi.setShuffle(false).catch((err) => errorHandler(err.response))
       setShuffle(false)
     } else {
-      spotifyApi.setShuffle(true)
+      spotifyApi.setShuffle(true).catch((err) => errorHandler(err.response))
       setShuffle(true)
     }
   }
 
   const handleRepeat = () => {
     if (repeatState === 'off') {
-      spotifyApi.setRepeat('context')
+      spotifyApi.setRepeat('context').catch((err) => errorHandler(err.response))
       setRepeat('context')
     } else if (repeatState === 'context') {
-      spotifyApi.setRepeat('track')
+      spotifyApi.setRepeat('track').catch((err) => errorHandler(err.response))
       setRepeat('track')
     } else if (repeatState === 'track') {
-      spotifyApi.setRepeat('off')
+      spotifyApi.setRepeat('off').catch((err) => errorHandler(err.response))
       setRepeat('off')
     }
   }
 
   const handleSlide = (event, newValue) => {
     setValue(newValue)
-    spotifyApi.seek(value)
+    spotifyApi.seek(value).catch((err) => errorHandler(err.response))
   }
 
   const handleVolume = (event, newValue) => {
     setMyVolume(newValue)
-    spotifyApi.setVolume(newValue)
+    spotifyApi.setVolume(newValue).catch((err) => errorHandler(err.response))
   }
 
   return (

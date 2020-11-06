@@ -18,7 +18,8 @@ export const BlackCircle = styled.div`
 export const H1 = styled.h1`
   color: ${({ theme }) => theme.white};
   font-weight: ${({ theme }) => theme.font.medium};
-  font-size: ${({ theme }) => theme.typography.h1};
+  font-size: ${({ theme, myFontSize }) =>
+    myFontSize ? myFontSize + 'px' : theme.typography.h1};
   cursor: pointer;
 `
 

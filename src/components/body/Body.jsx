@@ -78,7 +78,7 @@ const Body = ({
   useEffect(() => {
     spotifyApi.setAccessToken(token)
     toast.warning(
-      'This app is only web based, phones will not show it properly',
+      'This app is only web based, phones will not show it properly.',
       { toastId: 'onphone' }
     )
     toast.info(

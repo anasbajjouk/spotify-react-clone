@@ -16,6 +16,7 @@ import YourLibrary from '../../pages/yourLibrary/YourLibrary'
 import SearchPage from '../../pages/searchPage/SearchPage'
 import Page404 from '../../pages/page404/page-404.component'
 import errorHandler from '../../api/errorHandler'
+import { toast } from 'react-toastify'
 
 const Body = ({
   spotifyApi,
@@ -76,6 +77,9 @@ const Body = ({
 
   useEffect(() => {
     spotifyApi.setAccessToken(token)
+    toast.info(
+      'Try to connect your device to your spotify first in order to access this app. If nothing shows up, please do refresh the page!'
+    )
 
     // Get Current User's Recently Played Tracks
     spotifyApi
